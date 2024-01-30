@@ -103,16 +103,49 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 function doSomething (enemy_sprite_list: Image[]) {
     spawn_location = tiles.getTilesByType(sprites.castle.tilePath3)
     for (let index = 0; index < 4; index++) {
-        tiles.placeOnTile(enemy_sprite, spawn_location.removeAt(randint(0, spawn_location.length - 1)))
         enemy_sprite = sprites.create(enemy_sprite_list._pickRandom(), SpriteKind.Enemy)
-        enemy_sprite.follow(MyPlayer, 20)
-    }
-    if (MyPlayer.overlapsWith(enemy_sprite)) {
-    	
-    } else if (false) {
-    	
-    } else {
-    	
+        if (enemy_sprite.image.equals(img`
+            . . . . f f f f . . . . 
+            . . f f 6 b b 6 f f . . 
+            . f f 6 b 6 6 b 6 f f . 
+            f f 6 b 6 b b 6 b 6 f f 
+            f 6 b 6 b 6 6 b 6 b 6 f 
+            6 6 b 6 6 b b 6 6 b 6 6 
+            f d d d d d d d d d d f 
+            f d d f f d d f f d d f 
+            f d d d d d d d d d d f 
+            . f d d d b b d d d f . 
+            . f f d d d d d d f f . 
+            8 8 f 8 8 8 8 8 8 f 8 8 
+            8 8 f 8 8 8 8 8 8 f 8 8 
+            8 8 f 8 8 8 8 8 8 f 8 8 
+            . . . f f f f f f . . . 
+            . . . f f . . f f . . . 
+            `)) {
+            enemy_sprite.follow(MyPlayer, 20)
+        } else if (enemy_sprite.image.equals(img`
+            . . . . . f f f f . . . . . 
+            . . . f f c 2 c c f f . . . 
+            . . f c 2 c 2 c 2 c c f . . 
+            . f c c c 2 2 2 c c c c f . 
+            . f c c c 2 5 2 c c c c f . 
+            f c c c c 2 2 2 c c c c c f 
+            f c c c 2 c c c 2 c c c c f 
+            f 5 5 d b f d d f b d 5 5 f 
+            f 5 d d 1 f d d f 1 d d 5 f 
+            . f d f d d d d d d f d f . 
+            . f c f c c b c c c f c f . 
+            . c c f c c b c f c f c c . 
+            . c f f c c b c c c f f c . 
+            . c f c c c b c f c c f c . 
+            . . f f f f f f f f f f . . 
+            . . . . f f b b f f . . . . 
+            `)) {
+            enemy_sprite.follow(MyPlayer, 5)
+        } else {
+            enemy_sprite.follow(MyPlayer, 10)
+        }
+        tiles.placeOnTile(enemy_sprite, spawn_location.removeAt(randint(0, spawn_location.length - 1)))
     }
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
