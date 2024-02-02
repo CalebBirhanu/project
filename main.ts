@@ -102,7 +102,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function doSomething (enemy_sprite_list: Image[]) {
     spawn_location = tiles.getTilesByType(sprites.castle.tilePath3)
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 4 + info.score() / 4; index++) {
         enemy_sprite = sprites.create(enemy_sprite_list._pickRandom(), SpriteKind.Enemy)
         if (enemy_sprite.image.equals(img`
             . . . . f f f f . . . . 
@@ -141,7 +141,7 @@ function doSomething (enemy_sprite_list: Image[]) {
             . . f f f f f f f f f f . . 
             . . . . f f b b f f . . . . 
             `)) {
-            enemy_sprite.follow(MyPlayer, 5)
+            enemy_sprite.follow(MyPlayer, 15)
         } else {
             enemy_sprite.follow(MyPlayer, 10)
         }
